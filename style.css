@@ -1,0 +1,91 @@
+@charset "UTF-8";
+/*переменная которая хранит кол-во уток*/
+@keyframes duck-fly-1 {
+  0% {
+    left: -55px;
+    top: 66vh;
+  }
+  50% {
+    left: 8vw;
+    top: 41vh;
+  }
+  100% {
+    left: 100vw;
+    top: 8vh;
+  }
+}
+@keyframes duck-fly-2 {
+  0% {
+    left: -55px;
+    top: 17vh;
+  }
+  50% {
+    left: 35vw;
+    top: 4vh;
+  }
+  100% {
+    left: 100vw;
+    top: 41vh;
+  }
+}
+@keyframes duck-fly-3 {
+  0% {
+    left: -55px;
+    top: 89vh;
+  }
+  50% {
+    left: 21vw;
+    top: 7vh;
+  }
+  100% {
+    left: 100vw;
+    top: 36vh;
+  }
+}
+body {
+  counter-reset: count;
+  height: 100vh;
+  margin: 0;
+  background-image: url(https://i.ytimg.com/vi/i9R8MqilMW8/maxresdefault.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; /*не повторяется*/
+  position: relative;
+}
+
+.duck-check {
+  position: absolute;
+  visibility: hidden; /*скрываем внешний вид галочек*/
+  left: -9999999px; /*убираем наш чекбокс далеко за экран*/
+}
+.duck-check:checked { /*наш псевдокласс*/
+  counter-increment: count;
+}
+.duck-check:checked ~ label {
+  display: none;
+}
+
+.counter-info {
+  position: absolute;
+  top: 14px;
+  right: 24px;
+}
+.counter-info::before { /*наш псевдоэлемент*/
+  content: counter(count); /*отсюда получили 0*/
+}
+
+.duck {
+  position: absolute;
+}
+.duck__img {
+  width: 55px;
+}
+.duck_1 {
+  animation: duck-fly-1 5s ease-in 1s both;
+}
+.duck_2 {
+  animation: duck-fly-2 5s ease-in 2s both;
+}
+.duck_3 {
+  animation: duck-fly-3 5s ease-in 3s both;
+}/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,65 @@
+$widthDuck: 55px;
+$countDuck: 3; /*переменная которая хранит кол-во уток*/
+
+@for $i from 1 through $countDuck {
+  @keyframes duck-fly-#{$i} {
+    0% {
+      left: -$widthDuck;
+      top: random(90) + vh;
+    }
+
+    50% {
+      left: random(60) + vw;
+      top: random(90) + vh;
+    }
+
+    100% {
+      left: 100vw;
+      top: random(90) + vh;
+    }
+  }
+}
+
+body {
+  counter-reset: count;
+  height: 100vh;
+  margin: 0;
+  background-image: url(https://i.ytimg.com/vi/i9R8MqilMW8/maxresdefault.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; /*не повторяется*/
+  position: relative;
+}
+
+.duck-check {
+  position: absolute;
+  visibility: hidden; /*скрываем внешний вид галочек*/
+  left: -9999999px; /*убираем наш чекбокс далеко за экран*/
+  &:checked {       /*наш псевдокласс*/
+    counter-increment: count;
+  }
+  &:checked ~ label {
+    display: none;
+  }
+}
+
+.counter-info {
+  position: absolute;
+  top: 14px;
+  right: 24px;
+  &::before {        /*наш псевдоэлемент*/
+    content: counter(count);   /*отсюда получили 0*/
+  }
+}
+
+.duck {
+  position: absolute;
+  &__img {
+    width: $widthDuck;
+  }
+  @for $i from 1 through $countDuck {
+    &_#{$i} {
+      animation: duck-fly-#{$i} 5s ease-in #{$i}s both;
+    }
+  }
+}
